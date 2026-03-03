@@ -20,10 +20,15 @@ export async function generateMetadata({ params }: Props) {
     openGraph: {
       title: `Notes with ${tag} tag`,
       description: 'Browse notes tagged with ' + tag,
-      url:
-        'https://07-routing-nextjs-jh87nnfbh-anna-stukalovas-projects.vercel.app/notes/filter/' +
-        tag,
-      images: [{ url: '/public/NoteHub image.png' }],
+      url: 'https://08-zustand-steel-beta.vercel.app/notes/filter/all' + tag,
+      images: [
+        {
+          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Notes with ' + tag + ' tag',
+        },
+      ],
     },
   };
 }

@@ -30,12 +30,13 @@ export const metadata: Metadata = {
     title: 'NoteHub',
     description:
       'NoteHub is a simple and efficient application designed for managing personal notes',
-    url: 'https://07-routing-nextjs-jh87nnfbh-anna-stukalovas-projects.vercel.app/',
+    url: 'https://08-zustand-steel-beta.vercel.app/',
     images: [
       {
         url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
         width: 1200,
         height: 630,
+        alt: 'NoteHub Open Graph Image',
       },
     ],
   },
