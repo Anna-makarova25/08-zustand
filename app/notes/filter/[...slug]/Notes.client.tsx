@@ -3,15 +3,14 @@
 import css from './NotesPage.module.css';
 import NoteList from '@/components/NoteList/NoteList';
 import SearchBox from '@/components/SearchBox/SearchBox';
-import Modal from '@/components/Modal/Modal';
 import Pagination from '@/components/Pagination/Pagination';
-import NoteForm from '@/components/NoteForm/NoteForm';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import Loader from '@/components/Loader/Loader';
 import { useState } from 'react';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { fetchNotes } from '@/lib/api';
 import { useDebouncedCallback } from 'use-debounce';
+import Link from 'next/link';
 
 interface NotesClientProps {
   tag: string;
@@ -20,7 +19,6 @@ interface NotesClientProps {
 export default function NotesClient({ tag }: NotesClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
-  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleSearch = useDebouncedCallback((query: string) => {
     setSearchQuery(query);
@@ -40,24 +38,17 @@ export default function NotesClient({ tag }: NotesClientProps) {
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        {<SearchBox onSearch={handleSearch} />}
+        <SearchBox onSearch={handleSearch} />
         {totalPages > 1 && (
           <Pagination totalPages={totalPages} page={page} setPage={setPage} />
         )}
-        {
-          <button className={css.button} onClick={() => setIsFormOpen(true)}>
-            Create note +
-          </button>
-        }
+        <Link href="/notes/action/create" className={css.button}>
+          Create note +
+        </Link>
       </header>
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {isSuccess && notes.length > 0 && <NoteList notes={notes} />}
-      {isFormOpen && (
-        <Modal onClose={() => setIsFormOpen(false)}>
-          <NoteForm onClose={() => setIsFormOpen(false)} />
-        </Modal>
-      )}
-    </div>
+        </div>
   );
 }

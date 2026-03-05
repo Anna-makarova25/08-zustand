@@ -6,7 +6,7 @@ interface ApiResponse {
   totalPages: number;
 }
 
-interface NewNote {
+export interface NewNote {
   title: string;
   content: string;
   tag: string;
