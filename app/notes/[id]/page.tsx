@@ -14,21 +14,22 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const note = await fetchNoteById(id);
-  const tag = note.tag[0] || 'untagged';
+  const title = note.title || 'Note Details';
+  const description = note.content || 'Detailed view of the note';
 
   return {
-    title: `Notes with ${tag} tag`,
-    description: 'Browse notes tagged with ' + tag,
+    title: `{title}`,
+    description: description,
     openGraph: {
-      title: `Notes with ${tag} tag`,
-      description: 'Browse notes tagged with ' + tag,
-      url: 'https://08-zustand-steel-beta.vercel.app/notes/filter/' + tag,
+      title: `{title}`,
+      description: description,
+      url: `https://08-zustand-steel-beta.vercel.app/notes/${id}`,
       images: [
         {
           url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
           width: 1200,
           height: 630,
-          alt: note.title,
+          alt: title,
         },
       ],
     },
