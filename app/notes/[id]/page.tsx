@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = note.content || 'Detailed view of the note';
 
   return {
-    title: `{title}`,
-    description: description,
+    title: `${title}`,
+    description: `${description}`,
     openGraph: {
-      title: `{title}`,
-      description: description,
+      title: `${title}`,
+      description: `${description}`,
       url: `https://08-zustand-steel-beta.vercel.app/notes/${id}`,
       images: [
         {
